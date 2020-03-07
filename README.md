@@ -8,6 +8,8 @@ fine tune update pacing/ tick rate
 
 make a better game over screen
 
+lack of comments in this code
+
 # Stuff i can do later:
 images instead of squares
 
