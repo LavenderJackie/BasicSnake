@@ -13,7 +13,8 @@ public class Snake extends JPanel{
 	
 	private Game game;
 	
-	ArrayList<Integer> xSet = new ArrayList<Integer>(), ySet = new ArrayList<Integer>();
+	private int headX = Constants.headStart_x, headY = Constants.headStart_y;
+	private ArrayList<Integer> xSet = new ArrayList<Integer>(), ySet = new ArrayList<Integer>();
 	
 	private int size = 3;
 	
@@ -21,24 +22,26 @@ public class Snake extends JPanel{
 	
 	public Snake(Game g) {
 		game = g;
-		xSet.add(Constants.headStart_x);
-		ySet.add(Constants.headStart_y);
 	}
 	
 	public void move() {
-		for(int i = 0; i < xSet.size(); i++) {
-			if(up) {
-				ySet.set(i, ySet.get(i) - 1);
-			}
-			else if(down) {
-				ySet.set(i, ySet.get(i) + 1);
-			}
-			else if(left) {
-				xSet.set(i, xSet.get(i) - 1);
-			}
-			else if(right) {
-				xSet.set(i, xSet.get(i) + 1);
-			}
+		xSet.add(headX);
+		ySet.add(headY);
+		if(xSet.size() >= size + 1) {
+			xSet.remove(0);
+			ySet.remove(0);
+		}
+		if(up) {
+			headY -= 1;
+		}
+		else if(down) {
+			headY += 1;
+		}
+		else if(left) {
+			headX -= 1;
+		}
+		else if(right) {
+			headX += 1;
 		}
 	}
 	
@@ -54,28 +57,24 @@ public class Snake extends JPanel{
 	public void keyPressed(KeyEvent e) {
 		switch(e.getKeyCode()) {
 			case KeyEvent.VK_W:
-				up = true;
-				down = false;
+				up = !down;
 				left = false;
 				right = false;
 				break;
 			case KeyEvent.VK_A:
+				left = !right;
 				up = false;
 				down = false;
-				left = true;
-				right = false;
 				break;
 			case KeyEvent.VK_S:
-				up = false;
-				down = true;
+				down = !up;
 				left = false;
 				right = false;
 				break;
 			case KeyEvent.VK_D:
+				right = !left;
 				up = false;
 				down = false;
-				left = false;
-				right = true;
 				break;
 		}
 	}
