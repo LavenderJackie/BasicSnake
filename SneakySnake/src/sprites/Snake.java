@@ -27,10 +27,11 @@ public class Snake extends JPanel{
 	public void move() {
 		xSet.add(headX);
 		ySet.add(headY);
-		if(xSet.size() >= size + 1) {
+		if(xSet.size() >= size) {
 			xSet.remove(0);
 			ySet.remove(0);
 		}
+		
 		if(up) {
 			headY -= 1;
 		}
@@ -43,12 +44,40 @@ public class Snake extends JPanel{
 		else if(right) {
 			headX += 1;
 		}
+		if(headX == game.apple.getPoint()[0] && headY == game.apple.getPoint()[1]) {
+			size++;
+			game.apple.move();
+			while(inTail(game.apple.getPoint())) {
+				game.apple.move();
+			}
+		}
+		if(crash()) {
+			game.gameOver();
+		}
+	}
+	
+	public boolean inTail(int[] apple) {
+		boolean ret = false;
+		ret = headX == game.apple.getPoint()[0] && headY == game.apple.getPoint()[1] ? true : ret;
+		for(int i = 0; i < xSet.size(); i++) {
+			ret = xSet.get(i) == game.apple.getPoint()[0] && ySet.get(i) == game.apple.getPoint()[1] ? true : ret;
+		}
+		return ret;
+	}
+	
+	public boolean crash() {
+		boolean ret = headX >= Constants.boardSize || headX < 0 || headY >= Constants.boardSize || headY < 0;
+		for(int i = 0; i < xSet.size(); i++) {
+			ret = headX == xSet.get(i) && headY == ySet.get(i) ? true : ret;
+		}
+		return ret;
 	}
 	
 	public void paint(Graphics2D g) {
 		g.setColor(Color.GREEN);
+		g.fillRect(headX * (Constants.cellSize + Constants.bufferSize), headY * (Constants.cellSize + Constants.bufferSize), Constants.cellSize, Constants.cellSize);
 		for(int i = 0; i < xSet.size(); i++) {
-			g.fillRect(xSet.get(i) * Constants.cellSize, ySet.get(i) * Constants.cellSize, Constants.cellSize, Constants.cellSize);
+			g.fillRect(xSet.get(i) * (Constants.cellSize + Constants.bufferSize), ySet.get(i) * (Constants.cellSize + Constants.bufferSize), Constants.cellSize, Constants.cellSize);
 		}
 	}
 	

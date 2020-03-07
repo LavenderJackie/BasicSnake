@@ -23,7 +23,7 @@ public class Apple extends JPanel{
 	
 	public void paint(Graphics2D g) {
 		g.setColor(Color.RED);
-		g.fillRect(x * Constants.cellSize, y * Constants.cellSize, Constants.cellSize, Constants.cellSize);
+		g.fillRect(x * (Constants.cellSize + Constants.bufferSize), y * (Constants.cellSize + Constants.bufferSize), Constants.cellSize, Constants.cellSize);
 	}
 	
 	public int[] getPoint() {

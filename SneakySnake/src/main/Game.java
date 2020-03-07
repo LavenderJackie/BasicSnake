@@ -8,6 +8,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import sprites.*;
@@ -53,11 +54,16 @@ public class Game extends JPanel{
 		snake.move();
 	}
 	
+	public void gameOver() {
+		JOptionPane.showMessageDialog(this, "Game Over", "Game Over", JOptionPane.YES_NO_OPTION);
+		System.exit(ABORT);
+	}
+	
 	public static void main(String[] args) throws InterruptedException{
 		JFrame frame = new JFrame("Snake");
 		Game game = new Game();
 		
-		game.setPreferredSize(new Dimension(Constants.boardSize * Constants.cellSize, Constants.boardSize * Constants.cellSize));
+		game.setPreferredSize(new Dimension(Constants.boardSize * Constants.cellSize + Constants.bufferSize * (Constants.boardSize - 1), Constants.boardSize * Constants.cellSize + Constants.bufferSize * (Constants.boardSize - 1)));
 		frame.getContentPane().add(game);
 		frame.pack();
 		
