@@ -85,7 +85,7 @@ public class Snake extends JPanel{
 	//how to get keyboard inputs
 	//using WASD controls
 	public void keyPressed(KeyEvent e) {
-		if(game.validIn) {
+//		if(game.validIn) {
 			switch(e.getKeyCode()) {
 				case KeyEvent.VK_W:
 					up = !down;
@@ -108,8 +108,8 @@ public class Snake extends JPanel{
 					down = false;
 					break;
 			}
-			game.validIn = false;
-		}
+//			game.validIn = false;
+//		}
 	}
 	
 //	public void keyPressed(int e) {
