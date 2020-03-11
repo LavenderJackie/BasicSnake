@@ -74,6 +74,7 @@ public class Snake extends JPanel{
 	}
 	
 	public void paint(Graphics2D g) {
+		game.validIn = true;
 		g.setColor(Color.GREEN);
 		g.fillRect(headX * (Constants.cellSize + Constants.bufferSize), headY * (Constants.cellSize + Constants.bufferSize), Constants.cellSize, Constants.cellSize);
 		for(int i = 0; i < xSet.size(); i++) {
@@ -84,27 +85,55 @@ public class Snake extends JPanel{
 	//how to get keyboard inputs
 	//using WASD controls
 	public void keyPressed(KeyEvent e) {
-		switch(e.getKeyCode()) {
-			case KeyEvent.VK_W:
-				up = !down;
-				left = false;
-				right = false;
-				break;
-			case KeyEvent.VK_A:
-				left = !right;
-				up = false;
-				down = false;
-				break;
-			case KeyEvent.VK_S:
-				down = !up;
-				left = false;
-				right = false;
-				break;
-			case KeyEvent.VK_D:
-				right = !left;
-				up = false;
-				down = false;
-				break;
+		if(game.validIn) {
+			switch(e.getKeyCode()) {
+				case KeyEvent.VK_W:
+					up = !down;
+					left = false;
+					right = false;
+					break;
+				case KeyEvent.VK_A:
+					left = !right;
+					up = false;
+					down = false;
+					break;
+				case KeyEvent.VK_S:
+					down = !up;
+					left = false;
+					right = false;
+					break;
+				case KeyEvent.VK_D:
+					right = !left;
+					up = false;
+					down = false;
+					break;
+			}
+			game.validIn = false;
 		}
 	}
+	
+//	public void keyPressed(int e) {
+//		switch(e) {
+//			case KeyEvent.VK_W:
+//				up = !down;
+//				left = false;
+//				right = false;
+//				break;
+//			case KeyEvent.VK_A:
+//				left = !right;
+//				up = false;
+//				down = false;
+//				break;
+//			case KeyEvent.VK_S:
+//				down = !up;
+//				left = false;
+//				right = false;
+//				break;
+//			case KeyEvent.VK_D:
+//				right = !left;
+//				up = false;
+//				down = false;
+//				break;
+//		}
+//	}
 }
