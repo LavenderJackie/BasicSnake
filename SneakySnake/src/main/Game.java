@@ -20,8 +20,6 @@ public class Game extends JPanel{
 	public Apple apple;
 	
 	public boolean validIn = true;
-//	public int in = KeyEvent.VK_RIGHT;
-//	public KeyEvent rollOver = null;
 	
 	public Game() {
 		setBackground(Color.DARK_GRAY);
@@ -36,15 +34,6 @@ public class Game extends JPanel{
 
 			@Override
 			public void keyPressed(KeyEvent e) {
-//				if(validIn) {
-//					in = e.getKeyCode();
-//					validIn = false;
-//					System.out.println("button");
-//				}
-//				else {
-//					System.out.println("savin");
-//					rollOver = e;
-//				}
 				snake.keyPressed(e);
 			}
 
@@ -64,16 +53,6 @@ public class Game extends JPanel{
 	}
 	
 	public void move() {
-//		if(rollOver != null) {
-//			System.out.println("rollin");
-//			snake.keyPressed(rollOver);
-//			rollOver = null;
-//			validIn = true;
-//		}
-//		else {
-//			snake.keyPressed(in);
-//			validIn = true;
-//		}
 		snake.move();
 	}
 	

@@ -111,29 +111,4 @@ public class Snake extends JPanel{
 //			game.validIn = false;
 //		}
 	}
-	
-//	public void keyPressed(int e) {
-//		switch(e) {
-//			case KeyEvent.VK_W:
-//				up = !down;
-//				left = false;
-//				right = false;
-//				break;
-//			case KeyEvent.VK_A:
-//				left = !right;
-//				up = false;
-//				down = false;
-//				break;
-//			case KeyEvent.VK_S:
-//				down = !up;
-//				left = false;
-//				right = false;
-//				break;
-//			case KeyEvent.VK_D:
-//				right = !left;
-//				up = false;
-//				down = false;
-//				break;
-//		}
-//	}
 }
