@@ -19,7 +19,7 @@ public class Game extends JPanel{
 	public Snake snake;
 	public Apple apple;
 	
-	public boolean validIn = true;
+	public boolean noInput = true;
 	
 	public Game() {
 		setBackground(Color.DARK_GRAY);
@@ -75,7 +75,10 @@ public class Game extends JPanel{
 		frame.setResizable(false);
 		
 		while(true) {
-			game.move();
+			if(game.noInput) {
+				game.move();
+			}
+			game.noInput = true;
 			game.repaint();
 			Thread.sleep(Constants.tick);
 		}
