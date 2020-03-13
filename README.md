@@ -12,5 +12,3 @@ lack of comments in this code
 images instead of squares
 
 sound events
-
-bug: you move faster if you hold your last directional input
