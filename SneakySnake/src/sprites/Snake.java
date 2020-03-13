@@ -17,6 +17,7 @@ public class Snake extends JPanel{
 	private ArrayList<Integer> xSet = new ArrayList<Integer>(), ySet = new ArrayList<Integer>();
 	
 	private int size = 3;
+	private int lastKey = 0;
 	
 	private boolean up = false, down = false, left = false, right = true;
 	
@@ -84,29 +85,32 @@ public class Snake extends JPanel{
 	//how to get keyboard inputs
 	//using WASD controls
 	public void keyPressed(KeyEvent e) {
-		switch(e.getKeyCode()) {
-			case KeyEvent.VK_W:
-				up = !down;
-				left = false;
-				right = false;
-				break;
-			case KeyEvent.VK_A:
-				left = !right;
-				up = false;
-				down = false;
-				break;
-			case KeyEvent.VK_S:
-				down = !up;
-				left = false;
-				right = false;
-				break;
-			case KeyEvent.VK_D:
-				right = !left;
-				up = false;
+		if(lastKey != e.getKeyCode()) {
+			switch(e.getKeyCode()) {
+				case KeyEvent.VK_W:
+					up = !down;
+					left = false;
+					right = false;
+					break;
+				case KeyEvent.VK_A:
+					left = !right;
+					up = false;
 					down = false;
-			break;
+					break;
+				case KeyEvent.VK_S:
+					down = !up;
+					left = false;
+					right = false;
+					break;
+				case KeyEvent.VK_D:
+					right = !left;
+					up = false;
+					down = false;
+					break;
+			}
+			move();
+			game.noInput = false;
+			lastKey = e.getKeyCode();
 		}
-		move();
-		game.noInput = false;
 	}
 }
