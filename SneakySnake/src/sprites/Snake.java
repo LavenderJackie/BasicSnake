@@ -11,21 +11,27 @@ import main.*;
 
 public class Snake extends JPanel{
 	
+	//needed for now...might change/disappear in refactoring
 	private Game game;
 	
+	//all of the body segments are here... please note that the head is separate from the rest of the body
 	private int headX = Constants.headStart_x, headY = Constants.headStart_y;
 	private ArrayList<Integer> xSet = new ArrayList<Integer>(), ySet = new ArrayList<Integer>();
 	
+	//just some useful values like how big dis boi is and what input it last ate
 	private int size = 3;
 	private int lastKey = 0;
 	
+	//how dis boi movin
 	private boolean up = false, down = false, left = false, right = true;
 	
 	public Snake(Game g) {
 		game = g;
 	}
 	
+	//change dis boi's location based on where he goin
 	public void move() {
+		//updating the tail stuff
 		xSet.add(headX);
 		ySet.add(headY);
 		if(xSet.size() >= size) {
@@ -33,6 +39,7 @@ public class Snake extends JPanel{
 			ySet.remove(0);
 		}
 		
+		//changing the head position
 		if(up) {
 			headY -= 1;
 		}
@@ -45,18 +52,23 @@ public class Snake extends JPanel{
 		else if(right) {
 			headX += 1;
 		}
+		
+		//did we hit the apple?? 
 		if(headX == game.apple.getPoint()[0] && headY == game.apple.getPoint()[1]) {
-			size++;
+			size += Constants.lengthIncrease;
 			game.apple.move();
 			while(inTail(game.apple.getPoint())) {
 				game.apple.move();
 			}
 		}
+		
+		//did we crash??
 		if(crash()) {
 			game.gameOver();
 		}
 	}
 	
+	//is dere a boot in dis snake??
 	public boolean inTail(int[] apple) {
 		boolean ret = false;
 		ret = headX == game.apple.getPoint()[0] && headY == game.apple.getPoint()[1] ? true : ret;
@@ -66,6 +78,7 @@ public class Snake extends JPanel{
 		return ret;
 	}
 	
+	//did we hit something?? LETS LOOP AND FIND OUT
 	public boolean crash() {
 		boolean ret = headX >= Constants.boardSize || headX < 0 || headY >= Constants.boardSize || headY < 0;
 		for(int i = 0; i < xSet.size(); i++) {
@@ -74,6 +87,7 @@ public class Snake extends JPanel{
 		return ret;
 	}
 	
+	//make dis boi appear on screen
 	public void paint(Graphics2D g) {
 		g.setColor(Color.GREEN);
 		g.fillRect(headX * (Constants.cellSize + Constants.bufferSize), headY * (Constants.cellSize + Constants.bufferSize), Constants.cellSize, Constants.cellSize);
