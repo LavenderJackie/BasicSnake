@@ -98,8 +98,13 @@ public class Snake extends JPanel{
 	
 	//how to get keyboard inputs
 	//using WASD controls
+	//activates whenever a new key is pressed
 	public void keyPressed(KeyEvent e) {
+		//compares new and old inputs to see if a change is needed (fixes zoomin bug)
+		//validIn is used to make sure the user isnt spamming non-WASD keys to get a speed boost
+		boolean validIn = true;
 		if(lastKey != e.getKeyCode()) {
+			//reassign booleans for directions
 			switch(e.getKeyCode()) {
 				case KeyEvent.VK_W:
 					up = !down;
@@ -121,10 +126,15 @@ public class Snake extends JPanel{
 					up = false;
 					down = false;
 					break;
+				default:
+					validIn = false;
+					break;
 			}
-			move();
-			game.noInput = false;
-			lastKey = e.getKeyCode();
+			if(validIn) {
+				move();
+				game.noInput = false;
+				lastKey = e.getKeyCode();
+			}
 		}
 	}
 }
