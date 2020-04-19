@@ -35,7 +35,7 @@ public class RefactoredGame extends JPanel{
 			@Override
 			public void keyPressed(KeyEvent e) {
 				
-				if(snake.keyPressed(e)) {
+				if(snake.keyPressed(e, apple.getPoint())) {
 					noInput = false;
 				}
 			}
@@ -83,14 +83,14 @@ public class RefactoredGame extends JPanel{
 		frame.setLocationRelativeTo(null);
 		frame.setResizable(false);
 		
-		while(!game.snake.crash()) {
+		do {
 			if(game.noInput) {
 				game.move();
 			}
 			game.noInput = true;
 			game.repaint();
 			Thread.sleep(Constants.tick);
-		}
+		} while(!game.snake.crash());
 		
 		game.gameOver();
 	}

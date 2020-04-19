@@ -19,6 +19,37 @@ public class RefactoredSnake {
 	
 	public boolean move(int[] apple) {
 		
+		if(up) {
+			headY -= 1;
+			xSet.add(headX);
+			ySet.add(headY + 1);
+		}
+		else if(down) {
+			headY += 1;
+			xSet.add(headX);
+			ySet.add(headY - 1);
+		}
+		else if(left) {
+			headX -= 1;
+			xSet.add(headX + 1);
+			ySet.add(headY);
+		}
+		else if(right) {
+			headX += 1;
+			xSet.add(headX - 1);
+			ySet.add(headY);
+		}
+		
+		if(xSet.size() >= size) {
+			xSet.remove(0);
+			ySet.remove(0);
+		}
+		
+		if(headX == apple[0] && headY == apple[1]) {
+			size += Constants.lengthIncrease;
+			return true;
+		}
+		return false;
 	}
 	
 	public boolean inTail(int[] point) {
@@ -52,7 +83,7 @@ public class RefactoredSnake {
 		}
 	}
 	
-	public boolean keyPressed(KeyEvent e) {
+	public boolean keyPressed(KeyEvent e, int[] apple) {
 		
 		boolean validIn = true;
 		if(lastKey != e.getKeyCode()) {
@@ -82,10 +113,11 @@ public class RefactoredSnake {
 					break;
 			}
 			if(validIn) {
-				move();
+				move(apple);
 				lastKey = e.getKeyCode();
 			}
 			return validIn;
 		}
+		return false;
 	}
 }
