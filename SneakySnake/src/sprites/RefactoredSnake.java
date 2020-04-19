@@ -55,14 +55,15 @@ public class RefactoredSnake {
 		return false;
 	}
 	
-	public boolean inTail(int[] point) {
-		
-		boolean ret = headX == point[0] && headY == point[1];
-		for(int i = 0; i < xSet.size(); i++) {
-			ret = xSet.get(i) == point[0] && ySet.get(i) == point[1] ? true : ret;
-		}
-		return ret;
-	}
+	//method not working
+//	public boolean inTail(int[] point) {
+//		
+//		boolean ret = false;
+//		for(int i = 0; i < xSet.size(); i++) {
+//			ret = xSet.get(i) == point[0] && ySet.get(i) == point[1] ? true : ret;
+//		}
+//		return ret;
+//	}
 	
 	public int[] head() {
 		
@@ -132,7 +133,7 @@ public class RefactoredSnake {
 			}
 			if(validIn) {
 				move(apple);
-				noInput = true;
+				noInput = false;
 				lastKey = e.getKeyCode();
 			}
 		}

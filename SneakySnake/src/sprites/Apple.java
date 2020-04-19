@@ -11,6 +11,7 @@ public class Apple extends JPanel{
 	
 	//where the hell is this apple
 	private int x, y;
+	private int lastX, lastY;
 	
 	private int degrees = 0;
 	
@@ -37,5 +38,15 @@ public class Apple extends JPanel{
 	public int[] getPoint() {
 		int[] p = {x, y};
 		return p;
+	}
+	
+	public int[] getLasts() {
+		int[] p = {lastX, lastY};
+		return p;
+	}
+	
+	public void setLasts(int[] point) {
+		lastX = point[0];
+		lastY = point[1];
 	}
 }

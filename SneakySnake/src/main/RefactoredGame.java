@@ -54,14 +54,14 @@ public class RefactoredGame extends JPanel{
 		snake.paint(g2);
 	}
 	
-	public void move() {
-		if(snake.move(apple.getPoint())) {
-			while(snake.inTail(apple.getPoint())) {
-				apple.move();
-				snake.setApple(apple.getPoint());
-			}
-		}
-	}
+//	public void move() {
+//		if(snake.move(apple.getPoint())) {
+//			while(snake.inTail(apple.getPoint()) || (snake.head()[0] == apple.getPoint()[0] && snake.head()[1] == apple.getPoint()[1])) {
+//				apple.move();
+//			}
+//			snake.setApple(apple.getPoint());
+//		}
+//	}
 	
 	public void gameOver() {
 		JOptionPane.showMessageDialog(this, "Game Over", "Game Over", JOptionPane.YES_NO_OPTION);
@@ -82,14 +82,14 @@ public class RefactoredGame extends JPanel{
 		frame.setLocationRelativeTo(null);
 		frame.setResizable(false);
 		
-		do {
+		while(!game.snake.crash()) {
 			if(game.snake.noInput()) {
 				game.move();
 			}
 			game.snake.setNoInput(true);
 			game.repaint();
 			Thread.sleep(Constants.tick);
-		} while(!game.snake.crash());
+		}
 		
 		game.gameOver();
 	}
