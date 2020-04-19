@@ -10,6 +10,7 @@ public class Constants {
 	//snakey constants
 	public static final int headStart_x = boardSize/4;
 	public static final int headStart_y = boardSize/2;
+	public static final int starterLength = 3;
 	public static final int lengthIncrease = 3;
 	
 	//apple constants

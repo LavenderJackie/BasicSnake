@@ -27,10 +27,10 @@ public class Apple extends JPanel{
 	
 	//make this apple show up
 	public void paint(Graphics2D g) {
-		g.rotate(Math.toRadians(degrees += 10),x * (Constants.cellSize + Constants.bufferSize) + Constants.cellSize/2, y * (Constants.cellSize + Constants.bufferSize) + Constants.cellSize/2);
+//		g.rotate(Math.toRadians(degrees += 10),x * (Constants.cellSize + Constants.bufferSize) + Constants.cellSize/2, y * (Constants.cellSize + Constants.bufferSize) + Constants.cellSize/2);
 		g.setColor(Color.RED);
 		g.fillRect(x * (Constants.cellSize + Constants.bufferSize), y * (Constants.cellSize + Constants.bufferSize), Constants.cellSize, Constants.cellSize);
-		g.rotate(-Math.toRadians(degrees),x * (Constants.cellSize + Constants.bufferSize) + Constants.cellSize/2, y * (Constants.cellSize + Constants.bufferSize) + Constants.cellSize/2);
+//		g.rotate(-Math.toRadians(degrees),x * (Constants.cellSize + Constants.bufferSize) + Constants.cellSize/2, y * (Constants.cellSize + Constants.bufferSize) + Constants.cellSize/2);
 	}
 	
 	//now other components can figure where in the world the apple is
