@@ -18,14 +18,14 @@ public class RefactoredGame extends JPanel{
 	private RefactoredSnake snake;
 	private Apple apple;
 	
-	private boolean noInput = true;
-	
 	public RefactoredGame() {
 		
 		setBackground(Color.DARK_GRAY);
 		
 		apple = new Apple();
 		snake = new RefactoredSnake();
+		
+		snake.setApple(apple.getPoint());
 		
 		addKeyListener(new KeyListener() {
 
@@ -35,9 +35,7 @@ public class RefactoredGame extends JPanel{
 			@Override
 			public void keyPressed(KeyEvent e) {
 				
-				if(snake.keyPressed(e, apple.getPoint())) {
-					noInput = false;
-				}
+				snake.keyPressed(e);
 			}
 
 			@Override
@@ -60,6 +58,7 @@ public class RefactoredGame extends JPanel{
 		if(snake.move(apple.getPoint())) {
 			while(snake.inTail(apple.getPoint())) {
 				apple.move();
+				snake.setApple(apple.getPoint());
 			}
 		}
 	}
@@ -84,10 +83,10 @@ public class RefactoredGame extends JPanel{
 		frame.setResizable(false);
 		
 		do {
-			if(game.noInput) {
+			if(game.snake.noInput()) {
 				game.move();
 			}
-			game.noInput = true;
+			game.snake.setNoInput(true);
 			game.repaint();
 			Thread.sleep(Constants.tick);
 		} while(!game.snake.crash());

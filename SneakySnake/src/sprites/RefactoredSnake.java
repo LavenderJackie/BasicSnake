@@ -17,6 +17,9 @@ public class RefactoredSnake {
 	
 	private boolean up = false, down = false, left = false, right = true;
 	
+	private int[] apple;
+	private boolean noInput = true;
+	
 	public boolean move(int[] apple) {
 		
 		if(up) {
@@ -67,6 +70,21 @@ public class RefactoredSnake {
 		return h;
 	}
 	
+	public void setApple(int[] point) {
+		
+		apple = point;
+	}
+	
+	public void setNoInput(boolean t) {
+		
+		noInput = t;
+	}
+	
+	public boolean noInput() {
+		
+		return noInput;
+	}
+	
 	public boolean crash() {
 		
 		boolean ret = headX >= Constants.boardSize || headX < 0 || headY >= Constants.boardSize || headY < 0;
@@ -83,7 +101,7 @@ public class RefactoredSnake {
 		}
 	}
 	
-	public boolean keyPressed(KeyEvent e, int[] apple) {
+	public void keyPressed(KeyEvent e) {
 		
 		boolean validIn = true;
 		if(lastKey != e.getKeyCode()) {
@@ -114,10 +132,9 @@ public class RefactoredSnake {
 			}
 			if(validIn) {
 				move(apple);
+				noInput = true;
 				lastKey = e.getKeyCode();
 			}
-			return validIn;
 		}
-		return false;
 	}
 }
