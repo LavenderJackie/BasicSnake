@@ -20,7 +20,7 @@ public class RefactoredSnake {
 	private int[] apple;
 	private boolean noInput = true;
 	
-	public boolean move(int[] apple) {
+	public boolean move() {
 		
 		if(up) {
 			headY -= 1;
@@ -56,14 +56,24 @@ public class RefactoredSnake {
 	}
 	
 	//method not working
-//	public boolean inTail(int[] point) {
-//		
-//		boolean ret = false;
-//		for(int i = 0; i < xSet.size(); i++) {
-//			ret = xSet.get(i) == point[0] && ySet.get(i) == point[1] ? true : ret;
-//		}
-//		return ret;
-//	}
+	public boolean inTail(boolean app) {
+		boolean ret = false;
+		int[] point;
+		if(app)
+			point = apple;
+		else
+			point = head();
+		for(int i = 0; i < xSet.size(); i++) {
+			ret = (xSet.get(i) == point[0] && ySet.get(i) == point[1]) ? true : ret;
+//			if(b && ret)
+//				System.out.println("{" + xSet.get(i) + "," + ySet.get(i) + "} vs {" + point[0] + "," + point[1] + "}");
+			if(ret)
+				break;
+		}
+		if(ret)
+			System.out.println("in Tail");
+		return ret;
+	}
 	
 	public int[] head() {
 		
@@ -89,7 +99,7 @@ public class RefactoredSnake {
 	public boolean crash() {
 		
 		boolean ret = headX >= Constants.boardSize || headX < 0 || headY >= Constants.boardSize || headY < 0;
-		ret = inTail(head()) ? true : ret;
+		ret = inTail(false) ? true : ret;
 		return ret;
 	}
 	
@@ -132,7 +142,7 @@ public class RefactoredSnake {
 					break;
 			}
 			if(validIn) {
-				move(apple);
+				move();
 				noInput = false;
 				lastKey = e.getKeyCode();
 			}

@@ -54,14 +54,15 @@ public class RefactoredGame extends JPanel{
 		snake.paint(g2);
 	}
 	
-//	public void move() {
-//		if(snake.move(apple.getPoint())) {
-//			while(snake.inTail(apple.getPoint()) || (snake.head()[0] == apple.getPoint()[0] && snake.head()[1] == apple.getPoint()[1])) {
-//				apple.move();
-//			}
-//			snake.setApple(apple.getPoint());
-//		}
-//	}
+	//head collision works but the apple is choosing to be a little bitch for no reason >:( it stays in place sometimes and it irritates me
+	public void move() {
+		if(snake.move()) {
+			do {
+				apple.move();
+			} while(snake.inTail(true) || (snake.head()[0] == apple.getPoint()[0] && snake.head()[1] == apple.getPoint()[1]));
+			snake.setApple(apple.getPoint());
+		}
+	}
 	
 	public void gameOver() {
 		JOptionPane.showMessageDialog(this, "Game Over", "Game Over", JOptionPane.YES_NO_OPTION);

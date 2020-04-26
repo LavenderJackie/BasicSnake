@@ -11,7 +11,7 @@ public class Apple extends JPanel{
 	
 	//where the hell is this apple
 	private int x, y;
-	private int lastX, lastY;
+	private int[] lasts = {Constants.appleStart_x, Constants.appleStart_y};
 	
 	private int degrees = 0;
 	
@@ -22,8 +22,12 @@ public class Apple extends JPanel{
 	
 	//now its movin and shakin across the board
 	public void move() {
-		x = (int) (Math.random() * Constants.boardSize);
-		y = (int) (Math.random() * Constants.boardSize);
+		while(lasts[0] == x && lasts[1] == y) {
+			x = (int) (Math.random() * Constants.boardSize);
+			y = (int) (Math.random() * Constants.boardSize);
+		}
+		lasts[0] = x;
+		lasts[1] = y;
 	}
 	
 	//make this apple show up
@@ -38,15 +42,5 @@ public class Apple extends JPanel{
 	public int[] getPoint() {
 		int[] p = {x, y};
 		return p;
-	}
-	
-	public int[] getLasts() {
-		int[] p = {lastX, lastY};
-		return p;
-	}
-	
-	public void setLasts(int[] point) {
-		lastX = point[0];
-		lastY = point[1];
 	}
 }
