@@ -92,7 +92,7 @@ public class RefactoredSnake {
 	}
 	
 	public boolean noInput() {
-		
+
 		return noInput;
 	}
 	

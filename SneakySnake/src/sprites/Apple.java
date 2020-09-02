@@ -16,8 +16,14 @@ public class Apple extends JPanel{
 	private int degrees = 0;
 	
 	public Apple() {
+		reset();
+	}
+	
+	public void reset() {
 		x = Constants.appleStart_x;
 		y = Constants.appleStart_y;
+		
+		lasts = new int[] {Constants.appleStart_x, Constants.appleStart_y};
 	}
 	
 	//now its movin and shakin across the board

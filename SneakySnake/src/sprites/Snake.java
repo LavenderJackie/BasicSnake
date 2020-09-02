@@ -15,18 +15,35 @@ public class Snake extends JPanel{
 	private Game game;
 	
 	//all of the body segments are here... please note that the head is separate from the rest of the body
-	private int headX = Constants.headStart_x, headY = Constants.headStart_y;
-	private ArrayList<Integer> xSet = new ArrayList<Integer>(), ySet = new ArrayList<Integer>();
+	private int headX, headY;
+	private ArrayList<Integer> xSet, ySet;
 	
 	//just some useful values like how big dis boi is and what input it last ate
-	private int size = 3;
-	private int lastKey = 0;
+	private int size;
+	private int lastKey;
 	
 	//how dis boi movin
-	private boolean up = false, down = false, left = false, right = true;
+	private boolean up, down, left, right;
 	
 	public Snake(Game g) {
 		game = g;
+		reset();
+	}
+	
+	public void reset() {
+		headX = Constants.headStart_x;
+		headY = Constants.headStart_y;
+		
+		xSet = new ArrayList<Integer>();
+		ySet = new ArrayList<Integer>();
+		
+		size = 3;
+		lastKey = 0;
+		
+		up = false;
+		down = false;
+		left = false;
+		right = true;
 	}
 	
 	//change dis boi's location based on where he goin
