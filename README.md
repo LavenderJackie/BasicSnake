@@ -10,3 +10,6 @@ images instead of squares
 sound events
 
 change ticks??
+
+# PLEASE NOTE
+main game loop in src\main\Game.java
